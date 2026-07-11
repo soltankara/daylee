@@ -1,0 +1,54 @@
+:root {
+  /* surfaces */
+  --bg: #fafafa;
+  --surface: #ffffff;
+
+  /* ink */
+  --ink: #1a1a1e;
+  --ink-soft: #52525b;
+  --ink-muted: #74747e;
+  --ink-faint: #a6a6b0;
+  --ink-done: #a1a1aa;
+
+  /* lines & fills */
+  --line: #e5e5ea;
+  --line-soft: #ededf0;
+  --line-softer: #f0f0f3;
+  --tag-bg: #f0f0f3;
+  --chip-border: #e0e0e6;
+  --chip-bg: transparent;
+  --btn-border: #d4d4da;
+  --ring-border: #a3a3ac;
+  --dot-sep: #d8d8de;
+  --row-hover: #f2f2f5;
+  --row-selected: #ececf1;
+
+  /* semantic */
+  --accent: #5157d8;
+  --accent-glow: rgba(81, 87, 216, 0.15);
+  --done: #3e8e5a;
+  --warn: #cf4534;
+
+  /* type */
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-display: var(--font-body);
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* chrome font: labels, chips, buttons — mono stays for dates, counts, kbd hints */
+  --font-ui: var(--font-body);
+  --weight-label: 600;
+  --weight-display: 600;
+
+  /* shape */
+  --radius-row: 8px;
+  --radius-input: 10px;
+  --radius-card: 8px;
+  --radius-btn: 6px;
+  --radius-pill: 999px;
+
+  --shadow-input: 0 1px 2px rgba(20, 20, 25, 0.04);
+  --shadow-toast: 0 6px 24px rgba(20, 20, 25, 0.18);
+
+  /* card & chip treatment */
+  --card-border: var(--line);
+  --card-shadow: var(--shadow-input);
+}
