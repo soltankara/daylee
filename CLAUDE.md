@@ -1,4 +1,4 @@
-# Daybook
+# Daylee
 
 Personal task tracker PWA — single user, local-first, no server. All data in browser
 IndexedDB with optional auto-backup to a local folder. Full architecture (storage layers,

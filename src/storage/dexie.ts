@@ -4,11 +4,11 @@ import type { TaskStorage } from './storage'
 import { mergeTasks } from './merge'
 import { normalizePriority } from '../lib/task'
 
-class DaybookDB extends Dexie {
+class DayleeDB extends Dexie {
   tasks!: EntityTable<Task, 'id'>
 
   constructor() {
-    super('daybook')
+    super('daylee')
     this.version(1).stores({
       tasks: 'id, status, dueDate, completedAt, updatedAt'
     })
@@ -30,7 +30,7 @@ class DaybookDB extends Dexie {
 }
 
 export class DexieStorage implements TaskStorage {
-  private db = new DaybookDB()
+  private db = new DayleeDB()
 
   async listTasks(): Promise<Task[]> {
     return this.db.tasks.toArray()

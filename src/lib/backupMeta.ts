@@ -24,7 +24,7 @@ class MetaDB extends Dexie {
   kv!: EntityTable<KvRow, 'key'>
 
   constructor() {
-    super('daybook-meta')
+    super('daylee-meta')
     this.version(1).stores({ kv: 'key' })
   }
 }

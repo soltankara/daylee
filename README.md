@@ -1,11 +1,11 @@
-# Daybook
+# Daylee
 
 A personal task tracker for exactly one user: you. Capturing a task takes under three
 seconds; finding out "what should I do right now?" takes one glance.
 
 Local-first: everything is stored in your browser (IndexedDB). No accounts, no analytics,
 no network calls beyond font loading. Installable as a PWA and fully functional offline.
-Optional auto-backup mirrors your data to a folder you pick (`daybook.json` + the last 7
+Optional auto-backup mirrors your data to a folder you pick (`daylee.json` + the last 7
 daily snapshots) — see `docs/ARCHITECTURE.md` for how storage, backup and sync work.
 
 v1.1 borrows Linear's structure at personal scale: a drag-and-drop board, a ⌘K command

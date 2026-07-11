@@ -14,7 +14,7 @@ export interface Toast {
   onUndo: (() => void) | null
 }
 
-interface DaybookState {
+interface DayleeState {
   tasks: Task[]
   loaded: boolean
   view: View
@@ -86,7 +86,7 @@ function readLegacyLocalStorage(): Task[] {
   }
 }
 
-export const useStore = create<DaybookState>((set, get) => {
+export const useStore = create<DayleeState>((set, get) => {
   const persistTask = (task: Task) => {
     storage?.saveTask(task).catch(() => {
       get().showToast("Couldn't save — storage error")
@@ -289,7 +289,7 @@ export const useStore = create<DaybookState>((set, get) => {
     async importTasks(fileText: string): Promise<number> {
       const data: unknown = JSON.parse(fileText)
       const arr = Array.isArray(data) ? data : (data as { tasks?: unknown }).tasks
-      if (!Array.isArray(arr)) throw new Error('not a Daybook export')
+      if (!Array.isArray(arr)) throw new Error('not a Daylee export')
       const incoming = arr.map(normalizeTask).filter((t): t is Task => t !== null)
       if (!storage) throw new Error('storage not ready')
       const n = await storage.importAll(incoming)

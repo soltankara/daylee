@@ -4,13 +4,13 @@ import { exportJsonText } from './download'
 import { todayISO } from './dates'
 import { createDexieBackupMeta, type BackupMeta } from './backupMeta'
 
-export const MIRROR_NAME = 'daybook.json'
+export const MIRROR_NAME = 'daylee.json'
 export const SNAPSHOT_KEEP = 7
 
-const SNAPSHOT_RE = /^daybook-\d{4}-\d{2}-\d{2}\.json$/
+const SNAPSHOT_RE = /^daylee-\d{4}-\d{2}-\d{2}\.json$/
 
 export function snapshotName(dayISO: string): string {
-  return `daybook-${dayISO}.json`
+  return `daylee-${dayISO}.json`
 }
 
 /** Given a folder's entry names, the dated snapshots beyond the newest `keep`. */
@@ -44,7 +44,7 @@ interface BackupDeps {
 }
 
 const defaultDeps = (): BackupDeps => ({
-  pick: () => window.showDirectoryPicker({ id: 'daybook-backup', mode: 'readwrite' }),
+  pick: () => window.showDirectoryPicker({ id: 'daylee-backup', mode: 'readwrite' }),
   meta: createDexieBackupMeta(),
   now: () => new Date(),
   debounceMs: 2000

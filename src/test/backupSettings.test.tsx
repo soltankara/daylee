@@ -121,7 +121,7 @@ describe('backup settings', () => {
     await flush()
     // matches the status line and possibly the toast
     expect((await screen.findAllByText(/Backing up to “MyBackups”/)).length).toBeGreaterThan(0)
-    expect(dir.files.has('daybook.json')).toBe(true)
+    expect(dir.files.has('daylee.json')).toBe(true)
 
     await user.click(screen.getByText('back up now'))
     await flush()
@@ -146,6 +146,6 @@ describe('backup settings', () => {
     await user.click(screen.getByText('resume backups'))
     await flush()
     expect(await screen.findByText(/Backing up to “Docs”/)).toBeInTheDocument()
-    expect(dir.files.has('daybook.json')).toBe(true)
+    expect(dir.files.has('daylee.json')).toBe(true)
   })
 })

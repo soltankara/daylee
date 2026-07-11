@@ -1,8 +1,8 @@
-# Daybook — Architecture
+# Daylee — Architecture
 
 ## What this project is
 
-Daybook is a personal task tracker for exactly one user. The design goals: capturing a
+Daylee is a personal task tracker for exactly one user. The design goals: capturing a
 task takes under three seconds, and "what should I do right now?" is answered in one
 glance. It borrows Linear's structure at personal scale — a drag-and-drop board, a ⌘K
 command palette, a side-peek details panel, backlog/canceled workflow states, five
@@ -25,7 +25,7 @@ archive…) updates this array immutably — a new array reference each time. Th
 change is what downstream subscribers key off.
 
 **2. IndexedDB (the real database)** — the source of truth. A Dexie database called
-`daybook` (`src/storage/dexie.ts`) lives inside the browser profile, behind the
+`daylee` (`src/storage/dexie.ts`) lives inside the browser profile, behind the
 `TaskStorage` interface (`src/storage/storage.ts`; `MemoryStorage` is the test
 implementation). On startup, `init()` loads all tasks into the store in one shot; after
 that, every mutation writes through to IndexedDB immediately. This survives page reloads
@@ -33,7 +33,7 @@ but dies if site data is cleared or the browser evicts storage.
 
 **3. The backup folder (plain files on disk)** — a one-way mirror of layer 2 via the
 File System Access API (`src/lib/backup.ts`). A tiny second Dexie database,
-`daybook-meta` (`src/lib/backupMeta.ts`), remembers *which folder* the user picked — the
+`daylee-meta` (`src/lib/backupMeta.ts`), remembers *which folder* the user picked — the
 `FileSystemDirectoryHandle` is structured-cloneable, so it persists in IndexedDB and
 never has to be re-picked.
 
@@ -50,10 +50,10 @@ The chain is: **store change → subscriber → debounce → write**.
   queues one follow-up write instead of overlapping.
 - The write itself (`performBackup`) serializes all tasks into the same JSON payload as
   manual export (`exportJsonText` in `src/lib/download.ts`), then:
-  1. **Rewrites `daybook.json`** — the live mirror, always current. The API writes to a
+  1. **Rewrites `daylee.json`** — the live mirror, always current. The API writes to a
      temp file and atomically swaps it in on close, so a crash mid-write can never
      corrupt the mirror.
-  2. **Once per day**, also writes a dated snapshot `daybook-YYYY-MM-DD.json`. This
+  2. **Once per day**, also writes a dated snapshot `daylee-YYYY-MM-DD.json`. This
      protects against "I deleted everything yesterday and the mirror faithfully backed
      that up" — you can reach back up to 7 days.
   3. **Prunes**: lists the folder, matches dated snapshot names, sorts, and deletes
@@ -77,7 +77,7 @@ and the next change retries automatically.
 
 There is no server and no merging. Backup is strictly **one-way, IndexedDB → files**; the
 app never reads the backup folder on its own. Restore is manual: Settings → Import with
-`daybook.json` (or an older snapshot), which merges by task id with newer `updatedAt`
+`daylee.json` (or an older snapshot), which merges by task id with newer `updatedAt`
 winning (`src/storage/merge.ts`). Pointing the backup at an iCloud/Dropbox folder gets
 off-machine durability for free — the OS client uploads the files. Two tabs writing at
 once is last-writer-wins, which is safe because every write is the full valid state.

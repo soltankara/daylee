@@ -17,7 +17,7 @@ import {
 } from './backup'
 
 const NOW = () => new Date('2026-07-11T12:00:00')
-const TODAY_SNAP = 'daybook-2026-07-11.json'
+const TODAY_SNAP = 'daylee-2026-07-11.json'
 
 function mkTask(id: string, title: string): Task {
   return {
@@ -138,17 +138,17 @@ describe('pure helpers', () => {
   beforeEach(resetTaskStore)
 
   it('snapshotName formats a dated file name', () => {
-    expect(snapshotName('2026-07-11')).toBe('daybook-2026-07-11.json')
+    expect(snapshotName('2026-07-11')).toBe('daylee-2026-07-11.json')
   })
 
   it('snapshotsToDelete keeps the newest N and ignores other files', () => {
     const days = [3, 4, 5, 6, 7, 8, 9, 10, 11].map((d) =>
-      `daybook-2026-07-${String(d).padStart(2, '0')}.json`
+      `daylee-2026-07-${String(d).padStart(2, '0')}.json`
     )
-    const names = ['daybook.json', 'notes.txt', ...days].sort(() => 0.5) // order-independent
+    const names = ['daylee.json', 'notes.txt', ...days].sort(() => 0.5) // order-independent
     expect(snapshotsToDelete(names).sort()).toEqual([
-      'daybook-2026-07-03.json',
-      'daybook-2026-07-04.json'
+      'daylee-2026-07-03.json',
+      'daylee-2026-07-04.json'
     ])
     expect(snapshotsToDelete(days.slice(0, 7))).toEqual([])
   })
@@ -160,7 +160,7 @@ describe('pure helpers', () => {
       exportedAt: string
       tasks: Task[]
     }
-    expect(parsed.app).toBe('daybook')
+    expect(parsed.app).toBe('daylee')
     expect(parsed.version).toBe(2)
     expect(new Date(parsed.exportedAt).getTime()).not.toBeNaN()
     expect(parsed.tasks[0].title).toBe('One')
@@ -215,16 +215,16 @@ describe('backup flows', () => {
   it('writes one snapshot per day and prunes beyond the newest 7', async () => {
     const dir = fakeDir()
     for (let d = 1; d <= 8; d++) {
-      dir.files.set(`daybook-2026-07-0${d}.json`, '{}')
+      dir.files.set(`daylee-2026-07-0${d}.json`, '{}')
     }
     _resetBackupForTests({ pick: async () => dir.handle, meta: memMeta(), now: NOW })
     await initBackup()
     await chooseBackupFolder()
 
-    const snaps = Array.from(dir.files.keys()).filter((n) => n.startsWith('daybook-'))
+    const snaps = Array.from(dir.files.keys()).filter((n) => n.startsWith('daylee-'))
     expect(snaps).toHaveLength(7)
-    expect(dir.files.has('daybook-2026-07-01.json')).toBe(false)
-    expect(dir.files.has('daybook-2026-07-02.json')).toBe(false)
+    expect(dir.files.has('daylee-2026-07-01.json')).toBe(false)
+    expect(dir.files.has('daylee-2026-07-02.json')).toBe(false)
     expect(dir.files.has(TODAY_SNAP)).toBe(true)
     expect(dir.files.has(MIRROR_NAME)).toBe(true)
 

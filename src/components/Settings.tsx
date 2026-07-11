@@ -30,7 +30,7 @@ export function Settings() {
   }
 
   const exportCsv = () => {
-    download(`daybook-export-${todayISO()}.csv`, tasksToCsv(tasks), 'text/csv')
+    download(`daylee-export-${todayISO()}.csv`, tasksToCsv(tasks), 'text/csv')
   }
 
   const onImport = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ export function Settings() {
         const n = await importTasks(String(reader.result))
         showToast(`Imported ${n} task${n === 1 ? '' : 's'}`)
       } catch {
-        showToast('Import failed — not a Daybook JSON file')
+        showToast('Import failed — not a Daylee JSON file')
       }
       input.value = ''
     }
@@ -88,7 +88,7 @@ export function Settings() {
         {backup.status === 'off' && (
           <>
             <p>
-              Pick a folder and Daybook keeps a live daybook.json there, plus the last{' '}
+              Pick a folder and Daylee keeps a live daylee.json there, plus the last{' '}
               {SNAPSHOT_KEEP} daily snapshots.
             </p>
             <div className="settings-actions">
@@ -119,7 +119,7 @@ export function Settings() {
         )}
         {backup.status === 'paused' && (
           <>
-            <p>Paused — Daybook needs permission to write to “{backup.folderName}”.</p>
+            <p>Paused — Daylee needs permission to write to “{backup.folderName}”.</p>
             <div className="settings-actions">
               <button className="btn-primary" onClick={() => void resumeBackup()}>
                 resume backups
@@ -153,7 +153,7 @@ export function Settings() {
 
       <section className="settings-section">
         <div className="settings-section-title">Import</div>
-        <p>Bring a Daybook JSON export back. Tasks merge by id — the newer copy of each task wins.</p>
+        <p>Bring a Daylee JSON export back. Tasks merge by id — the newer copy of each task wins.</p>
         <input
           className="import-input"
           type="file"

@@ -17,7 +17,7 @@ export function Header() {
   return (
     <header className="header">
       <div>
-        <div className="wordmark">Daybook</div>
+        <div className="wordmark">Daylee</div>
         <h1 className="header-date">{fmtHeading()}</h1>
       </div>
       <div className="header-right">

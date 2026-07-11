@@ -13,12 +13,12 @@ export function download(name: string, text: string, type: string): void {
 /** The canonical export/backup payload — shared by manual export and auto-backup. */
 export function exportJsonText(tasks: Task[]): string {
   return JSON.stringify(
-    { app: 'daybook', version: 2, exportedAt: new Date().toISOString(), tasks },
+    { app: 'daylee', version: 2, exportedAt: new Date().toISOString(), tasks },
     null,
     2
   )
 }
 
 export function downloadJsonExport(tasks: Task[]): void {
-  download(`daybook-export-${todayISO()}.json`, exportJsonText(tasks), 'application/json')
+  download(`daylee-export-${todayISO()}.json`, exportJsonText(tasks), 'application/json')
 }

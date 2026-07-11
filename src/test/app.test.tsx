@@ -505,7 +505,7 @@ describe('import round-trip', () => {
     const existing = useStore.getState().tasks[0]
 
     const payload = {
-      app: 'daybook',
+      app: 'daylee',
       version: 1,
       tasks: [
         { ...existing, title: 'Existing (newer)', updatedAt: '2099-01-01T00:00:00.000Z' },
@@ -527,7 +527,7 @@ describe('import round-trip', () => {
     expect(titles).toEqual(['Existing (newer)', 'From backup'])
   })
 
-  it('rejects a non-Daybook file', async () => {
+  it('rejects a non-Daylee file', async () => {
     await setup()
     await expect(useStore.getState().importTasks('{"foo": 1}')).rejects.toThrow()
   })

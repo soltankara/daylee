@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'Daybook',
-        short_name: 'Daybook',
+        name: 'Daylee',
+        short_name: 'Daylee',
         description: 'A quiet page for your tasks.',
         theme_color: '#fafafa',
         background_color: '#fafafa',
