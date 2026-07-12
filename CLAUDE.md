@@ -51,12 +51,22 @@ backup/sync design): see `docs/ARCHITECTURE.md`.
 - `~/Sites/daylee` is a build artifact on the internal disk (works with the exFAT drive
   unplugged) — never edit it by hand
 
+## Git workflow
+
+`main` is protected — direct pushes are rejected. Every change, no matter how small:
+
+1. `git switch main && git pull`, then `git switch -c <topic-branch>`
+2. Commit on the branch; push with `git push -u origin <topic-branch>`
+3. Open a PR with a clear description of what changed and why:
+   `gh pr create --title "..." --body "..."`
+4. Wait for the `ci` check to pass, then squash-merge:
+   `gh pr merge --squash --delete-branch` (no approvals required — solo
+   maintainer self-merges)
+
 ## CI/CD
 
 - GitHub Actions (`.github/workflows/ci.yml`) runs on every push and PR to `main`:
   `npm ci` → `npm run build` (type-check + build) → `npm test`
-- `main` is protected: changes land via pull request with a green `ci` check
-  (no required approvals — solo maintainer self-merges). No direct pushes.
 - CI covers build + tests only; personal deployment stays manual via `npm run deploy`
   (see Deployment)
 - Merges to `main` also auto-deploy the public demo to GitHub Pages
