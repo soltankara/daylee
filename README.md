@@ -3,6 +3,9 @@
 [![CI](https://github.com/soltankara/daylee/actions/workflows/ci.yml/badge.svg)](https://github.com/soltankara/daylee/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+**[Try it live](https://soltankara.github.io/daylee/)** — no account, no server; your
+tasks stay in your own browser (IndexedDB).
+
 A personal task tracker for exactly one user: you. Capturing a task takes under three
 seconds; finding out "what should I do right now?" takes one glance.
 

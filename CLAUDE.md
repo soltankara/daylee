@@ -57,8 +57,12 @@ backup/sync design): see `docs/ARCHITECTURE.md`.
   `npm ci` → `npm run build` (type-check + build) → `npm test`
 - `main` is protected: changes land via pull request with a green `ci` check
   (no required approvals — solo maintainer self-merges). No direct pushes.
-- CI covers build + tests only; deployment stays manual via `npm run deploy` (see
-  Deployment)
+- CI covers build + tests only; personal deployment stays manual via `npm run deploy`
+  (see Deployment)
+- Merges to `main` also auto-deploy the public demo to GitHub Pages
+  (`.github/workflows/pages.yml`, https://soltankara.github.io/daylee/). The demo build
+  sets `VITE_BASE=/daylee/` (base path + PWA start_url/scope in `vite.config.ts`);
+  locally `VITE_BASE` stays unset so the base is `/`
 
 ## Gotchas
 
