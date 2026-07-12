@@ -1,5 +1,8 @@
 # Daylee
 
+[![CI](https://github.com/soltankara/daylee/actions/workflows/ci.yml/badge.svg)](https://github.com/soltankara/daylee/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 A personal task tracker for exactly one user: you. Capturing a task takes under three
 seconds; finding out "what should I do right now?" takes one glance.
 
@@ -49,6 +52,8 @@ palette, the details panel, or a board drag.
 `1/2/3/4/0` filter To do / Doing / Done / Backlog / All · `t` Today
 
 ## Development
+
+Requires Node.js 20+.
 
 ```bash
 npm install
@@ -101,3 +106,13 @@ edit it by hand.
 Your data is yours: one-click JSON/CSV export and JSON import (merge by id, newer
 `updatedAt` wins) live under **Export & data**. v1.0 exports import cleanly — old
 `normal|high` priorities map to the new scale automatically.
+
+## Contributing
+
+This is a personal project, but issues and pull requests are welcome — see
+[CONTRIBUTING.md](CONTRIBUTING.md). Larger feature ideas are best discussed in an
+issue first.
+
+## License
+
+[MIT](LICENSE) © 2026 Soltan Garayev

@@ -51,6 +51,15 @@ backup/sync design): see `docs/ARCHITECTURE.md`.
 - `~/Sites/daylee` is a build artifact on the internal disk (works with the exFAT drive
   unplugged) — never edit it by hand
 
+## CI/CD
+
+- GitHub Actions (`.github/workflows/ci.yml`) runs on every push and PR to `main`:
+  `npm ci` → `npm run build` (type-check + build) → `npm test`
+- `main` is protected: changes land via pull request with a green `ci` check
+  (no required approvals — solo maintainer self-merges). No direct pushes.
+- CI covers build + tests only; deployment stays manual via `npm run deploy` (see
+  Deployment)
+
 ## Gotchas
 
 - This is a private tool: no analytics, no trackers, no third-party network calls at
